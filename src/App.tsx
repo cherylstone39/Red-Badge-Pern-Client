@@ -1,10 +1,11 @@
 import React from "react";
-import './App.css';
+import './App.scss';
+import { Login } from "./components/Auth/Login";
 
 function App() {
   return (
     <div className="App">
-    
+    <Login />
     </div>
   );
 }
