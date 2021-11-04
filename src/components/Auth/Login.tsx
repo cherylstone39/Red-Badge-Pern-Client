@@ -1,17 +1,12 @@
 import * as React from 'react';
-import { Component } from 'react';
 import loginImg from "../../components/assets/loginImg.jpeg";
+import  "./Login.scss";
 
-export class Login extends React.Component {
+const Login = () => {
 
-    // constructor(props) {
-    //     super(props);
-    // }
-
-    render() {
-        return(
+           return(
             <div className='base-container'>
-                <div className='header'>Login</div>
+                <div className='header'>SugarShack Recipe App</div>
                 <div className='content'>
                    <div className='image'>
                        <img src ={loginImg} alt='donuts'/>
@@ -29,8 +24,11 @@ export class Login extends React.Component {
                 </div>
                 <div className='footer'>
                     <button type='button' className='btn'>Login</button>
+                    <hr />
+                    Need to create an account?  <a href="/register" >Register</a>
                 </div>
             </div>
         )
     }
-}
+
+    export default Login;
