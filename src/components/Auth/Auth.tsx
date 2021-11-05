@@ -1,19 +1,17 @@
-import {
-    Route,
-    Link,
-    Switch
-} from 'react-router-dom'
-import '/style.scss';
-import Login  from "./Login";
-import Register from "./Register";
+import * as React from 'react';
+import { Component } from 'react';
+import './Auth.scss';
 
-const Auth = () => {
-    return (
-        <div className='apps'>
-            
-        </div>
 
-    )
+export default class Home extends Component {
+
+    render() {
+        return (
+            <div className='auth-wrapper'>
+
+                <h2> You are not logged in </h2>
+  
+          </div>
+        )
+    }
 }
-
-export default Auth;
