@@ -5,8 +5,7 @@ import "./Register.scss"
 
 
 interface RegisterProps {
-    name?: any;
-    value?: any;
+   
 }
  
 interface RegisterState {
@@ -20,24 +19,43 @@ interface RegisterState {
 class Register extends React.Component<RegisterProps, RegisterState> {
     constructor(props: RegisterProps) {
         super(props);
-        const initialState ={
-            firstName : '',
-            lastName : '',
-            email: '',
-            password: '',
-           
-        }
-        this.state = initialState;
-        this.handleChange = this.handleChange.bind(this)
+       this.state = {firstName: '', lastName: '', email: '', password: ''}
+        
     }
 
-    handleChange = (e: any) => {
-        e.preventDefault();
-        const {name, value } = e.target;
-        this.setState({ [name]: value });
+    handleChange = (e) => {
+        e.preventDefault(e);
+            this.setState({firstName, lastName, email, password : this.state.updatedInfo});
         console.log(this.state)
     }
-    handleSubmit = (event :any) => {}
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const data = {
+            first_Name: this.state.firstName, 
+            last_Name: this.state.lastName, 
+            email: this.state.email,
+            password: this.state.password
+        };
+
+        fetch('http://localhost/user/register', {
+            method: 'POST',
+            body: JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            console.log("hello", data.user.sessionToken);
+            props.updateToken(data.user.sessionToken)
+        })
+        .catch ((err) => {
+            console.log(err)
+            alert(`Email in use`)
+        });
+
+    }
 
 
     render() { 
