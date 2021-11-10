@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Component } from 'react';
 import pie from "../../components/assets/pie.jpg";
 import "./Register.scss"
+import { Link } from 'react-router-dom';
 
 
 interface RegisterProps {
-   
+   updateToken: any;
 }
  
 interface RegisterState {
@@ -13,42 +14,49 @@ interface RegisterState {
     lastName: string,
     email: string,
     password: string,
+    role: string
       
 }
  
 class Register extends React.Component<RegisterProps, RegisterState> {
     constructor(props: RegisterProps) {
         super(props);
-       this.state = {firstName: '', lastName: '', email: '', password: ''}
+       this.state = {firstName: '', lastName: '', email: '', password: '', role: ''}
         
     }
 
-    handleChange = (e) => {
-        e.preventDefault(e);
-            this.setState({firstName, lastName, email, password : this.state.updatedInfo});
+    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+            this.setState({  [e.target.name]:e.target.value} as unknown as RegisterState);
+            
         console.log(this.state)
     }
-    handleSubmit = (e) => {
+    handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const data = {
-            first_Name: this.state.firstName, 
-            last_Name: this.state.lastName, 
+        const data: any = {
+            firstName: this.state.firstName, 
+            lastName: this.state.lastName, 
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            role: this.state.role
         };
 
         fetch('http://localhost/user/register', {
             method: 'POST',
-            body: JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
+            body: JSON.stringify(data),
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                
             })
         
         }).then(
             (response) => response.json()
-        ).then((data) => {
-            console.log("hello", data.user.sessionToken);
-            props.updateToken(data.user.sessionToken)
+        ).then((response) => {
+            if(response.data.user.sessionToken) {
+                this.props.updateToken(data.user.sessionToken)
+            
+            }
+                
         })
         .catch ((err) => {
             console.log(err)
@@ -90,15 +98,16 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                              onChange={this.handleChange}/>
                         </div>
                         <div className='form-group'>
-                            <label htmlFor='role'>Baker</label><input type='checkbox' name='admin' placeholder='admin'/>
-                            <label htmlFor='role'>User</label><input type='checkbox' name='user' placeholder='user'/>
+                            <label htmlFor='role'>Baker</label><input type='checkbox' name='admin' placeholder='admin'  onChange={this.handleChange}
+                             />
+                            <label htmlFor='role'>User</label><input type='checkbox' name='user' placeholder='user' onChange={this.handleChange} />
                         </div>                        
                     </div>
                 </div>
                 <div className='footer'>
                     <button type='button' className='btn btn-primary btn-block'>Register</button>
                     <hr />
-                    Already have an account?  <a href="/login" >Login</a>
+                    {/* Already have an account?  <Link to="/login" >Login</Link> */}
                 </div>
                 </form>
             </div>
