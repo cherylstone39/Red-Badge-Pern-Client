@@ -107,7 +107,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                 <div className='footer'>
                     <button type='button' className='btn btn-primary btn-block'>Register</button>
                     <hr />
-                    {/* Already have an account?  <Link to="/login" >Login</Link> */}
+                    Already have an account?  <Link to="/login" >Login</Link>
                 </div>
                 </form>
             </div>

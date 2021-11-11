@@ -82,7 +82,7 @@ class Login  extends React.Component<LoginProps, LoginState> {
                 <div className='footer'>
                     <button type='button' className='btn btn-primary btn-block'>Login</button>
                     <hr />
-                    {/* Need to create an account?  <Link to="/register" >Register</Link> */}
+                    Need to create an account?  <Link to="/register" >Register</Link>
                 </div>
                 </form>
             </div>
