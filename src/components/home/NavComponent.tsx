@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LandingIndex from '../landing/LandingIndex';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
+import Auth from '../auth/Auth';
+import RecipeIndex from '../recipes/RecipeIndex';
+import Home from './Home';
 
 import { 
     Container,
@@ -21,8 +23,10 @@ import {
 } from 'reactstrap';
 
 interface SugarShackNavProps {
-    updateToken: any;
+    // updateToken: any;
     clearToken:any;
+    // sessionToken:any;
+    // protectedViews: any;
     
 }
  
@@ -30,7 +34,7 @@ interface SugarShackNavState {
     isOpen: boolean;
 }
  
-class SugarShackNav extends React.Component<SugarShackNavProps, SugarShackNavState> {
+class SugarShackNav extends Component<SugarShackNavProps, SugarShackNavState> {
     constructor(props: SugarShackNavProps) {
         super(props);
         this.state = { isOpen: false};
@@ -58,8 +62,11 @@ class SugarShackNav extends React.Component<SugarShackNavProps, SugarShackNavSta
                         </DropdownToggle>
                         <DropdownMenu right>
                             <DropdownItem>
-                                <Link to='/recipes'>Recipes</Link>
-                            </DropdownItem>                    
+                                <a href='/home'>Home</a>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <a href='/recipes'>Recipes</a>
+                            </DropdownItem>                     
                         </DropdownMenu>
                     </UncontrolledDropdown>
                 <UncontrolledDropdown nav inNavbar>
@@ -68,13 +75,13 @@ class SugarShackNav extends React.Component<SugarShackNavProps, SugarShackNavSta
                     </DropdownToggle>
                     <DropdownMenu right>
                         <DropdownItem>
-                            <Link to='/register'>Register</Link>
+                            <a href='/register'>Register</a>
                         </DropdownItem>
                         <DropdownItem>
-                            <Link to='/login'>Log In</Link>
+                            <a href='/login'>Log In</a>
                         </DropdownItem>
                         <DropdownItem>
-                            <a href='/' onClick={this.props.clearToken}>Logout</a> 
+                            <Button onClick={this.props.clearToken}>Logout</Button> 
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
@@ -88,14 +95,14 @@ class SugarShackNav extends React.Component<SugarShackNavProps, SugarShackNavSta
         
            
 
-        <Switch>
-            <Route exact path='/'><LandingIndex /></Route>
-            {/* <Route path='/auth'>< Auth/></Route> */}
-            <Route path='/login'><Login updateToken={this.props.updateToken} /></Route> 
-            <Route path='/register'><Register updateToken={this.props.updateToken} /></Route> 
-            {/* <Route path='/account'><Account sessionToken={props.sessionToken} protectedViews={props.protectedViews} /></Route>             */}
+         <Switch> 
+            <Route exact path='/home'><Home /></Route>
+            {/* <Route path='/auth'><Auth updateToken={this.props.updateToken}/></Route> */}
+            {/* <Route path='/login'><Login updateToken={this.props.updateToken} /></Route> 
+            <Route path='/register'><Register updateToken={this.props.updateToken} /></Route>  */}
+            {/* <Route path='/recipes'><RecipeIndex sessionToken={this.props.sessionToken}/></Route>            */}
         </Switch>
-        </Router>
+        </Router> 
         </Container>
         </div>
         );

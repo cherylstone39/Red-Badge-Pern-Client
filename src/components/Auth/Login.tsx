@@ -3,6 +3,7 @@ import { Component } from 'react';
 import {Link} from 'react-router-dom';
 import loginImg from "../../components/assets/loginImg.jpeg";
 import  "./Login.scss";
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 interface LoginProps {
     updateToken: any;
@@ -34,7 +35,7 @@ class Login  extends React.Component<LoginProps, LoginState> {
             
         };
 
-        fetch('http://localhost/user/login', {
+        fetch('http://localhost:3000/user/login', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: new Headers({
@@ -44,11 +45,9 @@ class Login  extends React.Component<LoginProps, LoginState> {
         }).then(
             (response) => response.json()
         ).then((response) => {
-            if(response.data.user.sessionToken) {
-                this.props.updateToken(data.user.sessionToken)
+        this.props.updateToken(response.sessionToken)
             
-            }
-                
+               
         })
         .catch ((err) => {
             console.log(err)
@@ -59,9 +58,13 @@ class Login  extends React.Component<LoginProps, LoginState> {
 
     render() { 
         return(
-            <div className='base-container'>
+            <Container>
+                <Row>
+                    <Col lg='4' md='6' sm='12'>
+
+                    <div className='base-container'>
                 <form onSubmit={this.handleSubmit}>
-                <div className='header'>SugarShack Recipe App</div>
+                <h3>Login</h3>
                 <div className='content'>
                    <div className='image'>
                        <img src ={loginImg} alt='donuts'/>
@@ -80,12 +83,19 @@ class Login  extends React.Component<LoginProps, LoginState> {
                     </div>
                 </div>
                 <div className='footer'>
-                    <button type='button' className='btn btn-primary btn-block'>Login</button>
+                    <button type='submit' className='btn btn-primary btn-block'>Login</button>
                     <hr />
-                    Need to create an account?  <Link to="/register" >Register</Link>
+                    Need to create an account?  <a href="/register" >Register</a>
                 </div>
                 </form>
-            </div>
+                        </div>
+
+
+
+
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }

@@ -5,6 +5,7 @@ import "./Register.scss"
 import { Link } from 'react-router-dom';
 
 
+
 interface RegisterProps {
    updateToken: any;
 }
@@ -18,7 +19,7 @@ interface RegisterState {
       
 }
  
-class Register extends React.Component<RegisterProps, RegisterState> {
+class Register extends Component<RegisterProps, RegisterState> {
     constructor(props: RegisterProps) {
         super(props);
        this.state = {firstName: '', lastName: '', email: '', password: '', role: ''}
@@ -33,17 +34,23 @@ class Register extends React.Component<RegisterProps, RegisterState> {
     }
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const data: any = {
-            firstName: this.state.firstName, 
-            lastName: this.state.lastName, 
-            email: this.state.email,
-            password: this.state.password,
-            role: this.state.role
-        };
+        const {
+            firstName, 
+            lastName,
+            email,
+            password,
+            role
+        } = this.state
 
-        fetch('http://localhost/user/register', {
+        fetch('http://localhost:3000/user/register', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            role: role
+            }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 
@@ -52,15 +59,13 @@ class Register extends React.Component<RegisterProps, RegisterState> {
         }).then(
             (response) => response.json()
         ).then((response) => {
-            if(response.data.user.sessionToken) {
-                this.props.updateToken(data.user.sessionToken)
-            
-            }
+            this.props.updateToken(response.sessionToken)
+                       
                 
         })
         .catch ((err) => {
             console.log(err)
-            alert(`Email in use`)
+            // alert(`Email in use`)
         });
 
     }
@@ -105,9 +110,9 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                     </div>
                 </div>
                 <div className='footer'>
-                    <button type='button' className='btn btn-primary btn-block'>Register</button>
+                    <button type='submit' className='btn btn-primary btn-block'>Register</button>
                     <hr />
-                    Already have an account?  <Link to="/login" >Login</Link>
+                    Already have an account?  <a href="/login" >Login</a>
                 </div>
                 </form>
             </div>

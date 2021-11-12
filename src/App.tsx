@@ -1,10 +1,13 @@
 import './App.scss';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import * as React from 'react';
 import { Component } from 'react';
 import Nav from './components/home/NavComponent';
 import { BrowserRouter as Router } from 'react-router-dom';
-// import Auth from './components/auth/Auth';
+import Auth from './components/auth/Auth';
+import RecipeIndex from './components/recipes/RecipeIndex';
+import Footer from './components/home/Footer';
+import Home from './components/home/Home';
 
 
 
@@ -13,18 +16,22 @@ interface AppProps {
 }
  
 interface AppState {
-  sessionToken: string;
+  sessionToken: any;
+  role: string;
 }
  
 class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
-    this.state = { sessionToken: ''  };
+    this.state = { sessionToken: '' , role: ''};
   }
-  componentWillMount() {
-    const token = localStorage.getItem('token');
-    if (token && !this.state.sessionToken) {   
-      this.setState({ sessionToken: token });
+  componentDidMount() {
+    if (localStorage.getItem('token')){
+      this.setState({ sessionToken: localStorage.getItem("token")});
+      
+    }
+    if(localStorage.getItem('admin')){
+      this.setState({role: localStorage.getItem("admin")})
     }
   }
  updateToken = (newToken: string) => {
@@ -38,21 +45,32 @@ class App extends React.Component<AppProps, AppState> {
   this.setState({sessionToken: ''})
 }
 
-  logout = () => {
-  this.setState({ 
-    sessionToken: '', 
-  });
-  localStorage.clear();
+
+//   logout = () => {
+//   this.setState({ 
+//     sessionToken: '', 
+//   });
+//   localStorage.clear();
+// }
+
+
+protectedViews = () => {
+  return(this.state.sessionToken === localStorage.getItem('token') ? <RecipeIndex sessionToken={this.state.sessionToken} />
+  : <Auth updateToken={this.updateToken} />)
+ 
 }
 
   render() { 
     return ( 
       <div className="App">
-         <Router>    
-        <Nav  updateToken={this.updateToken} clearToken={this.clearToken}/>
-        </Router>
-
-        {/* <Auth setToken={this.updateToken} /> */}
+          
+        <Nav  clearToken={this.clearToken} />
+        <Router>
+          {this.protectedViews()}
+        {/* <Home /> */}
+       </Router>
+       <Footer />
+        {/* <Auth updateToken={this.updateToken} /> */}
         
        
         </div>
