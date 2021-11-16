@@ -5,7 +5,7 @@ import { Table, Button} from 'reactstrap';
 const RecipeTable = (props) => {
 
     const deleteRecipe = (recipe) => {
-        fetch('http://localhost:3000/delete/:id', {
+        fetch('http://localhost:3000/delete', {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ const RecipeTable = (props) => {
             <td>{recipe.servings}</td>
             <td>{recipe.photo}</td>
             <td>
-                <Button color='warning'>Update</Button>
+                <Button color='warning' onClick={() => {props.UpdatedRecipe(recipe); props.updateActive()}}>Update</Button>
                 <Button color='danger' onClick={() => {deleteRecipe(recipe)}} >Delete</Button>
             </td>
             </tr>
@@ -45,18 +45,19 @@ const RecipeTable = (props) => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>nameOfDessert</th>
-                        <th>recipe</th>
-                        <th>directions</th>
-                        <th>timeToBake</th>
-                        <th>servings</th>
-                        <th>photo</th>
+                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>NameOfDessert</th>
+                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>Recipe</th>
+                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>Directions</th>
+                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>TimeToBake</th>
+                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>Servings</th>
+                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>Photo</th>
                     </tr>
                 </thead>
                 <tbody>
                     {recipeMapper()}
                 </tbody>
             </Table>
+            {/* call and mount Recipes in this component */}
         </div>            
     )
 }

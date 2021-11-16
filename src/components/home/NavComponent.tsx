@@ -32,6 +32,8 @@ interface SugarShackNavProps {
  
 interface SugarShackNavState {
     isOpen: boolean;
+    
+    
 }
  
 class SugarShackNav extends Component<SugarShackNavProps, SugarShackNavState> {
@@ -61,9 +63,9 @@ class SugarShackNav extends Component<SugarShackNavProps, SugarShackNavState> {
                             Categories
                         </DropdownToggle>
                         <DropdownMenu right>
-                            <DropdownItem>
+                            {/* <DropdownItem>
                                 <a href='/home'>Home</a>
-                            </DropdownItem>
+                            </DropdownItem> */}
                             <DropdownItem>
                                 <a href='/recipes'>Recipes</a>
                             </DropdownItem>                     
@@ -96,8 +98,8 @@ class SugarShackNav extends Component<SugarShackNavProps, SugarShackNavState> {
            
 
          <Switch> 
-            <Route exact path='/home'><Home /></Route>
-            {/* <Route path='/auth'><Auth updateToken={this.props.updateToken}/></Route> */}
+            <Route exact path='/'><Home /></Route>
+            {/* <Route path='/'><{protectviews()}/></Route> */}
             {/* <Route path='/login'><Login updateToken={this.props.updateToken} /></Route> 
             <Route path='/register'><Register updateToken={this.props.updateToken} /></Route>  */}
             {/* <Route path='/recipes'><RecipeIndex sessionToken={this.props.sessionToken}/></Route>            */}

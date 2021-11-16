@@ -18,7 +18,7 @@ interface RecipeCreateState {
     userId: number;
 }
  
-class RecipeCreate extends React.Component<RecipeCreateProps, RecipeCreateState> {
+class RecipeCreate extends Component<RecipeCreateProps, RecipeCreateState> {
     constructor(props: RecipeCreateProps) {
         super(props);
         this.state = { 
@@ -42,7 +42,7 @@ class RecipeCreate extends React.Component<RecipeCreateProps, RecipeCreateState>
 
             fetch('http://localhost:3000/recipe/create' , {
                 method: 'POST',
-                body: JSON.stringify({nameOfDessert: this.state.nameOfDessert, recipe:this.state.recipe, directions: this.state.directions, timeToBake: this.state.timeToBake, servings: this.state.servings, photo: this.state.photo, userId: this.state.userId}),
+                body: JSON.stringify({recipe: {nameOfDessert: this.state.nameOfDessert, recipe:this.state.recipe, directions: this.state.directions, timeToBake: this.state.timeToBake, servings: this.state.servings, photo: this.state.photo, userId: this.state.userId}}),
                 headers: new Headers ({
                     'Content-Type': 'application/json',
                     'Authorization': this.props.sessionToken

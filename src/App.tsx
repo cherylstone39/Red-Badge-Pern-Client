@@ -6,8 +6,10 @@ import Nav from './components/home/NavComponent';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Auth from './components/auth/Auth';
 import RecipeIndex from './components/recipes/RecipeIndex';
+import Recipes from './components/site/Recipes';
 import Footer from './components/home/Footer';
 import Home from './components/home/Home';
+import Ratings from './components/feedback/Ratings';
 
 
 
@@ -18,6 +20,7 @@ interface AppProps {
 interface AppState {
   sessionToken: any;
   role: string;
+  
 }
  
 class App extends React.Component<AppProps, AppState> {
@@ -55,7 +58,7 @@ class App extends React.Component<AppProps, AppState> {
 
 
 protectedViews = () => {
-  return(this.state.sessionToken === localStorage.getItem('token') ? <RecipeIndex sessionToken={this.state.sessionToken} />
+  return(this.state.sessionToken === localStorage.getItem('token') ? <Recipes sessionToken={this.state.sessionToken} />
   : <Auth updateToken={this.updateToken} />)
  
 }
@@ -64,9 +67,15 @@ protectedViews = () => {
     return ( 
       <div className="App">
           
-        <Nav  clearToken={this.clearToken} />
+        <Nav clearToken={this.clearToken} />
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <Router>
-          {this.protectedViews()}
+        {this.protectedViews()}
+          
         {/* <Home /> */}
        </Router>
        <Footer />

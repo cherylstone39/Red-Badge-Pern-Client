@@ -5,26 +5,43 @@ import Register from './Register';
 import Login from './Login';
 
 
-const Auth = (props: any) => {
-    // if(updateToken === localStorage){
-    //     return(<LandingsIndex />){
-    // }else {
-    //     (<Auth />)
-    // }
-    // }
-    return (
-        <Container>
-                <Row>
-                    <Col md='6'>
-                        <Register  updateToken={props.updateToken} />
-                    </Col>
-                    <Col md='6'>
-                        <Login  updateToken={props.updateToken}  />
-                    </Col>
-                </Row>
-            </Container>
-
-    )
+interface AuthProps {
+    updateToken: any;
 }
-
+ 
+interface AuthState {
+    isLoginActive: boolean;
+}
+ 
+class Auth extends Component<AuthProps, AuthState> {
+    constructor(props: AuthProps) {
+        super(props);
+        this.state = {isLoginActive: true};
+    }
+    render() { 
+        const { isLoginActive } = this.state;
+        // const current = isLoginActive ? 'Register' : 'Login';
+        // const currentActive = isLoginActive ? 'login' : 'register'
+        return ( 
+             
+                <Container>
+                        <Row>
+                            <Col md='6'>
+                              
+                                <Login updateToken={this.props.updateToken}  />
+                           
+                            </Col>
+                            <Col md='6'>
+                                {/* {!isLoginActive && ( */}
+                                <Register  updateToken={this.props.updateToken} />
+                                {/* )} */}
+                            </Col>
+                        </Row> /*button 
+                    </Container>
+        
+            )
+        
+    }
+}
+ 
 export default Auth;

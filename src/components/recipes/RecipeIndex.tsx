@@ -6,6 +6,7 @@ import RecipeEdit from './RecipeEdit';
 import RecipeTable from './RecipeTable';
 
 
+
 interface RecipeIndexProps {
     sessionToken: any;
     // protectedViews: any;
