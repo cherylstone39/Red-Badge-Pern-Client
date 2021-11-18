@@ -5,11 +5,11 @@ import { Table, Button} from 'reactstrap';
 const RecipeTable = (props) => {
 
     const deleteRecipe = (recipe) => {
-        fetch('http://localhost:3000/delete', {
+        fetch(`http://localhost:3000/delete/${recipe.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': props.token
+                'Authorization': props.sessionToken
             })
         })
         .then(() => props.fetchRecipes())
@@ -29,7 +29,11 @@ const RecipeTable = (props) => {
             <td>{recipe.servings}</td>
             <td>{recipe.photo}</td>
             <td>
-                <Button color='warning' onClick={() => {props.UpdatedRecipe(recipe); props.updateActive()}}>Update</Button>
+                <Button color='warning' onClick={() => {
+                    console.log(recipe)
+                    props.setUpdatedRecipe(recipe)
+                    props.handleUpdateOpen()
+                }}>Update</Button>
                 <Button color='danger' onClick={() => {deleteRecipe(recipe)}} >Delete</Button>
             </td>
             </tr>

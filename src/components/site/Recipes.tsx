@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Link, Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import RecipeIndex from '../recipes/RecipeIndex';
+import RatingsIndex from '../feedback/RatingsIndex';
 
 const Sweets = (props) => {
     return (
         <Container>
-          <Router>
             <Row>
                 <Col md='4'>
 
@@ -61,8 +61,8 @@ const Sweets = (props) => {
     <li className="list-group-item">Servings</li>
   </ul>
   <div className="card-body">
-    <a href="#" className="">Rate Dessert</a>
-    <Link to="/recipes" className="create">Baker-Post a Recipe</Link> react-rounter switch and router- react fundatmentals
+    <Link to="/ratings" className="rate">Rate Dessert</Link>
+    <Link to="/recipes" className="create">Baker-Post a Recipe</Link> 
   </div>
 </div>
                 </Col>
@@ -72,9 +72,9 @@ const Sweets = (props) => {
 
 
             <Switch>
+              <Route path='/ratings'><RatingsIndex sessionToken={props.sessionToken} /></Route>
               <Route path='/recipes'><RecipeIndex sessionToken={props.sessionToken} /></Route>
             </Switch>
-            </Router>
         </Container>
     )
 }

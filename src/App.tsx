@@ -9,7 +9,7 @@ import RecipeIndex from './components/recipes/RecipeIndex';
 import Recipes from './components/site/Recipes';
 import Footer from './components/home/Footer';
 import Home from './components/home/Home';
-import Ratings from './components/feedback/Ratings';
+import RatingsIndex from './components/feedback/RatingsIndex';
 
 
 
@@ -49,6 +49,7 @@ class App extends React.Component<AppProps, AppState> {
 }
 
 
+
 //   logout = () => {
 //   this.setState({ 
 //     sessionToken: '', 
@@ -67,17 +68,19 @@ protectedViews = () => {
     return ( 
       <div className="App">
           
-        <Nav clearToken={this.clearToken} />
+        <Nav clearToken={this.clearToken} sessionToken={this.updateToken} />
         <br/>
         <br/>
         <br/>
-        <br/>
-        <br/>
+        <br/>  
+        
         <Router>
         {this.protectedViews()}
           
         {/* <Home /> */}
        </Router>
+       <br/>
+       <br/>
        <Footer />
         {/* <Auth updateToken={this.updateToken} /> */}
         

@@ -60,7 +60,7 @@ class RecipeEdit extends React.Component<RecipeEditProps, RecipeEditState> {
     render() { 
         return ( 
             <div>
-                <Modal isOpen={true} > //1
+                <Modal isOpen={true} >
                 <ModalHeader >Edit Your Recipe</ModalHeader>
                 <ModalBody>
                     <Form onSubmit={this.handleSubmit} >

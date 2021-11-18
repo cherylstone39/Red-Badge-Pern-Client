@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Register from './Register';
 import Login from './Login';
+import { Redirect } from 'react-router-dom'
 
 
 interface AuthProps {
@@ -36,7 +37,7 @@ class Auth extends Component<AuthProps, AuthState> {
                                 <Register  updateToken={this.props.updateToken} />
                                 {/* )} */}
                             </Col>
-                        </Row> /*button 
+                        </Row>{/*button*/}
                     </Container>
         
             )

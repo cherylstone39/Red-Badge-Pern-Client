@@ -5,6 +5,7 @@ import { Button, Container, Row, Col, Form, Label, Input } from 'reactstrap';
 
 interface RecipeCreateProps {
     sessionToken:any;
+    fetchRecipes:() => void;
     
 }
  
@@ -58,8 +59,9 @@ class RecipeCreate extends Component<RecipeCreateProps, RecipeCreateState> {
                     timeToBake: '',
                     servings: 1,
                     photo: '',
-                                        
+                                    
                 })
+                this.props.fetchRecipes()
             })
         // }
     }
