@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Table, Button} from 'reactstrap';
+import RecipeEdit from "./RecipeEdit"
 
 
 const RecipeTable = (props) => {
@@ -12,7 +13,7 @@ const RecipeTable = (props) => {
                 'Authorization': props.sessionToken
             })
         })
-        .then(() => props.fetchRecipes())
+        .then(() => props.fetch())
     }
 
 
@@ -29,11 +30,19 @@ const RecipeTable = (props) => {
             <td>{recipe.servings}</td>
             <td>{recipe.photo}</td>
             <td>
-                <Button color='warning' onClick={() => {
+            <RecipeEdit
+            sessionToken={props.sessionToken}
+            recipe={recipe}
+            fetch={props.fetch}
+        //    handleUpdateClosed={this.handleUpdateClosed}
+        //       fetchRecipes={this.fetchRecipes}
+        //       recipeToUpdate={this.state.recipeToUpdate}
+            />
+                {/* <Button color='warning' onClick={() => {
                     console.log(recipe)
                     props.setUpdatedRecipe(recipe)
                     props.handleUpdateOpen()
-                }}>Update</Button>
+                }}>Update</Button> */}
                 <Button color='danger' onClick={() => {deleteRecipe(recipe)}} >Delete</Button>
             </td>
             </tr>
