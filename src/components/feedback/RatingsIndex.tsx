@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import Ratings from '../feedback/Ratings';
+import RatingsTable from './RatingsTable';
 
 
 
@@ -34,11 +36,27 @@ class RatingsIndex extends React.Component<RatingsIndexProps, RatingsIndexState>
         })
     }
 
+    componentDidMount() {
+        this.fetchRatings();
+    }
+
 
     render() { 
         return ( 
             <div>
-                <Ratings sessionToken={this.props.sessionToken}/>
+                <Container>
+                    <Row>
+                        <Col md='6'>
+                        <Ratings sessionToken={this.props.sessionToken} fetchRatings={this.fetchRatings}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md='6'>
+                            <RatingsTable sessionToken={this.props.sessionToken} fetchRatings={this.fetchRatings} />
+                        </Col>
+                    </Row>
+                    </Container>
+
             </div>
          );
     }

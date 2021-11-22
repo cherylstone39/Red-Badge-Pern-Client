@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Form, Col, Row, Button  } from 'react-bootstrap'
+import { Form, Container, Col, Row, Button  } from 'react-bootstrap'
 import pie from "../../components/assets/pie.jpg";
 import "./Register.scss"
 import { Link } from 'react-router-dom';
@@ -74,6 +74,9 @@ class Register extends Component<RegisterProps, RegisterState> {
 
     render() { 
         return (
+          <div>
+            <Container>
+
             <Form onSubmit={this.handleSubmit}>
                 <h2>Register</h2>
                 <br/>
@@ -106,58 +109,15 @@ class Register extends Component<RegisterProps, RegisterState> {
   <Form.Group className="mb-3" id="formGridUser">
     <Form.Check type="checkbox" name='user' label="User" onChange={this.handleChange}/>
   </Form.Group>
-
-  <div className='footer'>
+          <br/>
      <button type='submit' className='btn btn-primary btn-block'>Register</button>
-        <hr />
-        Already have an account?  <a href="/login" >Login</a>
- </div>
-</Form>
-            // <div className='base-container'>
-            //     <form onSubmit={this.handleSubmit}>
-            //     <div className='header'>Register</div>
-            //     <div className='content'>
-            //     {/* <div className='image'>
-            //            <img src ={pie} alt='pie'/>
-            //        </div> */}
-                   
-            //         <div className='form'>
-            //         <div className='form-group'>
-            //                 <label htmlFor='firstName'>First Name</label>
-            //                 <input type='text' name='firstName' placeholder='firstName'
-            //                 onChange={this.handleChange} />
-            //             </div>
-            //             <div className='form-group'>
-            //                 <label htmlFor='lastName'>Last Name</label>
-            //                 <input type='text' name='lastName' placeholder='lastName'
-            //                 onChange={this.handleChange}/>
-            //             </div>
-            //             <div className='form-group'>
-            //                 <label htmlFor='email'>Email</label>
-            //                 <input type='text' name='email' placeholder='email'
-            //                  onChange={this.handleChange}/>
-            //             </div>
-            //             <div className='form-group'>
-            //                 <label htmlFor='password'>Password</label>
-            //                 <input type='text' name='password' placeholder='password' 
-            //                  onChange={this.handleChange}/>
-            //             </div>
-            //             <div className='form-group'>
-            //                 <label htmlFor='role'>Baker</label>
-            //                 <input type='checkbox' name='admin' placeholder='admin'  onChange={this.handleChange}
-            //                  />
-            //                 <label htmlFor='role'>User</label>
-            //                 <input type='checkbox' name='user' placeholder='user' onChange={this.handleChange} />
-            //             </div>                        
-            //         </div>
-            //     </div>
-            //     <div className='footer'>
-            //         <button type='submit' className='btn btn-primary btn-block'>Register</button>
-            //         <hr />
-            //         Already have an account?  <a href="/login" >Login</a>
-            //     </div>
-            //     </form>
-            // </div>
+</Form>  
+<hr/>    
+    Already have an account?  <a href="/login" >Login</a>
+            </Container>
+          </div>
+ 
+       
           );
     }
 }

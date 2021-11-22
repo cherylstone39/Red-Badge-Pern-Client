@@ -1,9 +1,12 @@
 import * as React from "react";
 import { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
+import RatingsTable from "../feedback/RatingsTable";
 import RecipeCreate from "./RecipeCreate";
 import RecipeEdit from "./RecipeEdit";
+import Sweets from "../site/Recipes";
 import RecipeTable from "./RecipeTable";
+import RatingsIndex from '../feedback/RatingsIndex';
 
 interface RecipeIndexProps {
   sessionToken: any;
@@ -64,7 +67,8 @@ class RecipeIndex extends React.Component<RecipeIndexProps, RecipeIndexState> {
       .then((res) => res.json())
       .then((recipeData) => {
         console.log(recipeData);
-        return this.setState({ recipes: recipeData });
+        this.setState({ recipes: recipeData });
+        console.log(this.state.recipes);
       });
   };
 
@@ -76,13 +80,17 @@ class RecipeIndex extends React.Component<RecipeIndexProps, RecipeIndexState> {
     return (
       <Container>
         <Row>
+          <Sweets recipes={this.state.recipes}/>
+          </Row>
+        <Row>
           <Col md="4">
             <RecipeCreate
               sessionToken={this.props.sessionToken}
               fetchRecipes={this.fetchRecipes}
+              // <RatingsIndex sessionToken={this.state.recipes} />
             />
           </Col>
-          <Col md="8">
+          <Col md="4">
             <RecipeTable
               recipes={this.state.recipes}
               setUpdatedRecipe={this.setUpdatedRecipe}

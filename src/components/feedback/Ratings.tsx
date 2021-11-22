@@ -1,34 +1,35 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Container, Row, Col , ModalTitle, ModalFooter} from 'react-bootstrap'
-import { Modal, ModalHeader, ModalBody, Button, } from 'reactstrap'
+import { Container, Row, Col , Form, FormGroup, ModalFooter} from 'react-bootstrap'
+import { Modal, ModalHeader, ModalBody, Button, Label, Input } from 'reactstrap'
 import { FaStar } from 'react-icons/fa';
 
 interface RatingsProps {
-    sessionToken: any
+    sessionToken: any,
+    fetchRatings:() => void;
 }
  
 interface RatingsState {
     ratingOfDessert: number;
     feedback: string;
-    recipeId: number;
-    userId: number;
-    currentValue: number;
-    hoverValue: number;
-    show: boolean;
+    recipeId:any;
+    userId: any;
+  
+    modal: boolean
 }
  
-class Ratings extends React.Component<RatingsProps, RatingsState> {
+class Ratings extends Component<RatingsProps, RatingsState> {
     constructor(props: RatingsProps) {
         super(props);
-        this.state = { ratingOfDessert: 0, feedback: '', recipeId: 0, userId: 0 , currentValue: 0, hoverValue: 0, show: false};
+        this.state = { ratingOfDessert: 0, feedback: '', recipeId: 0, userId: 0, 
+    modal: false};
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         fetch('http://localhost:3000/ratings/create', {
             method: 'POST',
-            body: JSON.stringify({ratingOfDessert: this.state.ratingOfDessert, feedback: this.state.feedback, recipeId: this.state.recipeId, userId: this.state.userId}),
+            body: JSON.stringify({ratings: {ratingOfDessert: this.state.ratingOfDessert, feedback: this.state.feedback, recipeId: this.state.recipeId}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': this.props.sessionToken
@@ -36,89 +37,50 @@ class Ratings extends React.Component<RatingsProps, RatingsState> {
         })
         .then((res) => res.json())
         .then((ratingData) => {
-            this.setState({
-                ratingOfDessert: 0,
-                feedback: '',
+           this.toggle()
+           this.props.fetchRatings()
             })
-        })
-    }
-
-     handleClick = value =>{
-        this.setState({currentValue: value })
-    }
-
-    handleMouseOver = value => {
-        this.setState({hoverValue: value})
-    }
-
-    handleMouseLeave = () => {
-        this.setState({hoverValue: undefined})
-    }
-
-     colors={
-        orange : '#ffba5a',
-        grey : '#a9a9a9'
-    }
-
-    handleClose = () => {
-        this.setState({ show : false})
-    }
-
-    handleShow = () => {
-        this.setState({ show : true })
+        
     }
 
 
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value} as unknown as RatingsState)
+    }
+
+    toggle = () => this.setState({modal: !this.state.modal})
     render() { 
         
-        const stars = Array(5).fill(0);
        
 
         return (
             <div>
-                 {/* <Button variant="primary" onClick={this.handleShow}>
-        Launch static backdrop modal
-      </Button> */}
-                 <Modal show={this.state.show}
-                     onHide={this.handleClose}
-                        backdrop="static"
-                         keyboard={false} >
-                <ModalHeader closeButton>
-                <ModalTitle>Rate Recipe</ModalTitle>
-                </ModalHeader>
-                <Container style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <ModalBody>
-                    <Row>
-                        <Col lg='4' md='6' sm='12'>
-                            {stars.map((_, index) => {
-                                return(
-                                    <FaStar 
-                                    key={index}
-                                    size={24}
-                                    style={{
-                                        marginRight: 10, cursor: 'pointer'
-                                    }}
-                                    color={(this.state.hoverValue || this.state.currentValue) > index ? this.colors.orange : this.colors.grey}
-                                    onClick={() => this.handleClick(index + 1)} 
-                                    onMouseOver={() => this.handleMouseOver(index + 1)}
-                                    onMouseLeave={this.handleMouseLeave} />
-                                )
-                            })}
-                            <div>
-                                <input type='text' style={{border: '1px solid #a9a9a9', width: '300px', borderRadius: 5}} placeholder='feedback' />
-
-                            </div>
-
-                        </Col>
-                    </Row>
-                </ModalBody>
-                            <ModalFooter>
-                                <button onSubmit={this.handleSubmit} style={{border: '1px solid #a9a9a9', width: '300px', borderRadius: 5}} >Submit</button>
-                                <Button variant="secondary" onClick={this.handleClose}>Close</Button>
-                            </ModalFooter>
-                </Container>
-                </Modal>
-            </div>
+            <Button color="secondary"  style={{borderRadius: '25px'}} onClick={this.toggle}>Update</Button>
+             <Modal isOpen={this.state.modal} toggle={this.toggle} >
+               <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+               <ModalBody>
+                 <Form onSubmit={this.handleSubmit} >
+                               <FormGroup>
+                                   <Label for="ratingOfDessert">Name Of Dessert</Label>
+                                   <Input id="ratingOfDessert" type="text" name="ratingOfDessert" defaultValue={this.state.ratingOfDessert} //2
+                                   placeholder="enter number 1-5" onChange={(e) => this.handleChange(e)} />
+                               </FormGroup>
+                               <FormGroup>
+                                   <Label for="feedback">Type</Label>
+                                   <Input id="feedback" name="feedback" type="text" value={this.state.feedback} onChange={this.handleChange} placeholder="Input feedback" />
+                               </FormGroup>
+                                                          
+                               <Button type="submit" color="primary"> Submit </Button>
+                           </Form>
+               </ModalBody>
+               <ModalFooter>
+                 <Button color="danger" onClick={this.toggle}>Close</Button>{' '}
+                
+               </ModalFooter>
+             </Modal>
+                  
+                   </div>
           );
     }
 }

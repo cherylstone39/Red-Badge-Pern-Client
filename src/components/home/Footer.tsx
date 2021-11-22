@@ -3,11 +3,10 @@ import { Row } from 'reactstrap';
 
 const Footer = () => {
     return (
-        <footer>
-            <Row>
-                <p>&copy; Cheryl Stone 2021</p>
-            </Row>
-        </footer>        
+        <div className='footer' style={{fontFamily:'sans-serif'}}>
+        <p style={{textAlign:'center'}}>&copy; Sugar Shack Recipes </p>
+        <p style={{textAlign:'center'}}> &nbsp; Cheryl Stone</p>
+    </div>        
         
     )
 }

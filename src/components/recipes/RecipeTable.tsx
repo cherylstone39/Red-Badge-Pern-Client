@@ -6,7 +6,7 @@ import RecipeEdit from "./RecipeEdit"
 const RecipeTable = (props) => {
 
     const deleteRecipe = (recipe) => {
-        fetch(`http://localhost:3000/delete/${recipe.id}`, {
+        fetch(`http://localhost:3000/recipe/delete/${recipe.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const RecipeTable = (props) => {
                     props.setUpdatedRecipe(recipe)
                     props.handleUpdateOpen()
                 }}>Update</Button> */}
-                <Button color='danger' onClick={() => {deleteRecipe(recipe)}} >Delete</Button>
+                <Button style={{borderRadius: '25px'}} color='danger' onClick={() => {deleteRecipe(recipe)}} >Delete</Button>
             </td>
             </tr>
             )

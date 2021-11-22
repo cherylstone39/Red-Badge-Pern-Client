@@ -81,13 +81,10 @@ class Login  extends React.Component<LoginProps, LoginState> {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password"  name='password' placeholder="Password"    onChange={this.handleChange}/>
             </Form.Group>
-            
-            <div className='footer'>
+            <br/>            
             <button type='submit' className='btn btn-primary btn-block'>Login</button>
-            <hr />
-             Need to create an account?  <a href="/register" >Register</a>
-            </div>
             </Form>
+             Need to create an account?  <a href="/register" >Register</a>
                 </Container>
             </div>
             // <Container>

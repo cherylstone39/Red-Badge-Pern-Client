@@ -77,19 +77,20 @@ class RecipeCreate extends Component<RecipeCreateProps, RecipeCreateState> {
                     <Row>
                         <Col md='4'>
                             <Label htmlFor='nameOfDessert'/>
-                            <Input name='nameOfDessert' value={this.state.nameOfDessert} onChange={this.handleChange} />
+                            <Input name='nameOfDessert' placeHolder='Name Of Dessert' value={this.state.nameOfDessert} onChange={this.handleChange} />
                             <Label htmlFor='recipe'/>
-                            <Input name='recipe' value={this.state.recipe} onChange={this.handleChange} />
+                            <Input name='recipe' placeHolder='Recipe' value={this.state.recipe} onChange={this.handleChange} />
                             <Label htmlFor='directions'/>
-                            <Input name='directions' value={this.state.directions} onChange={this.handleChange} />
+                            <Input name='directions' placeHolder='Directions' value={this.state.directions} onChange={this.handleChange} />
                             <Label htmlFor='timeToBake'/>
-                            <Input name='timeToBake' value={this.state.timeToBake} onChange={this.handleChange} />
+                            <Input name='timeToBake' placeHolder='Bake Time' value={this.state.timeToBake} onChange={this.handleChange} />
                             <Label htmlFor='servings'/>
-                            <Input name='servings' value={this.state.servings} onChange={this.handleChange} />
+                            <Input name='servings' placeHolder='Num of Servings' value={this.state.servings} onChange={this.handleChange} />
                             <Label Img src='photo'/>
-                            <Input name='photo' value={this.state.photo} onChange={this.handleChange} />
-                        </Col>
+                            <Input name='photo' placeHolder='Image of Dessert' value={this.state.photo} onChange={this.handleChange} />
+                            <br/>
                         <Button type='submit'>Click to Submit</Button>
+                        </Col>
                     </Row>
                     </Form>
                 </Container>

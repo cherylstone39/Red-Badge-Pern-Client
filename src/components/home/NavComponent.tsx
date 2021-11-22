@@ -7,7 +7,7 @@ import Register from '../auth/Register';
 import Auth from '../auth/Auth';
 import RecipeIndex from '../recipes/RecipeIndex';
 import Home from './Home';
-import Sweets from '../site/Recipes';
+import Recipes from '../site/Recipes';
 import RatingsIndex from '../feedback/RatingsIndex';
 
 import { 
@@ -66,14 +66,17 @@ class SugarShackNav extends Component<SugarShackNavProps, SugarShackNavState> {
                         </DropdownToggle>
                         <DropdownMenu right>
                             <DropdownItem>
-                                <a href='/home'>Home</a>
+                                <Link to='/home'>Home</Link>
                             </DropdownItem>
-                            <DropdownItem>
+                            {/* <DropdownItem>
                                 <Link to='/recipes'>Sweets</Link>
-                            </DropdownItem>  
+                            </DropdownItem>   */}
+                            {/* <DropdownItem>
+                                <Link to='/ratings'>Rate Dessert</Link>
+                            </DropdownItem> 
                             <DropdownItem>
-                                <Link to='/ratings'>RateDessert</Link>
-                            </DropdownItem>                               
+                                <Link to='/recipe'>Post Dessert</Link>
+                            </DropdownItem>                               */}
                         </DropdownMenu>
                     </UncontrolledDropdown>
                 <UncontrolledDropdown nav inNavbar>
@@ -81,9 +84,9 @@ class SugarShackNav extends Component<SugarShackNavProps, SugarShackNavState> {
                         Account
                     </DropdownToggle>
                     <DropdownMenu right>
-                    <DropdownItem>
+                    {/* <DropdownItem>
                             <Link to='/auth'>Account Home</Link>
-                        </DropdownItem>
+                        </DropdownItem> */}
                         <DropdownItem>
                             <a href='/register'>Register</a>
                         </DropdownItem>
@@ -106,12 +109,13 @@ class SugarShackNav extends Component<SugarShackNavProps, SugarShackNavState> {
            
 
          <Switch> 
-            <Route exact path='/'><Home /></Route>
-            <Route path='/ratings'><RatingsIndex sessionToken={this.props.sessionToken} /></Route>
+            <Route path='/' exact component={Home} />
+            <Route path='/ratings' component={RatingsIndex} sessionToken={this.props.sessionToken} />
+            {/* <Route path='/recipes' component={Recipes} sessionToken={this.props.sessionToken}/> */}
             {/* <Route path='/'><{protectviews()}/></Route> */}
-            {/* <Route path='/login'><Login updateToken={this.props.updateToken} /></Route> 
-            <Route path='/register'><Register updateToken={this.props.updateToken} /></Route>  */}
-            <Route path='/recipes'><RecipeIndex sessionToken={this.props.sessionToken}/></Route>           
+            {/* <Route path='/login' component={Login} updateToken={this.props.updateToken} />
+            <Route path='/register' component={Register} updateToken={this.props.updateToken} /> */}
+            <Route path='/recipe' component={RecipeIndex} sessionToken={this.props.sessionToken}/>          
         </Switch>
         </Router> 
         </Container>

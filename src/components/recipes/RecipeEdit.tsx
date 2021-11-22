@@ -101,7 +101,7 @@ class RecipeEdit extends React.Component<RecipeEditProps, RecipeEditState> {
         console.log(this.props.recipe.id)
         return ( 
             <div>
-     <Button color="danger" onClick={this.toggle}>Update</Button>
+     <Button color="secondary"  style={{borderRadius: '25px'}} onClick={this.toggle}>Update</Button>
       <Modal isOpen={this.state.modal} toggle={this.toggle} >
         <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
         <ModalBody>
@@ -135,8 +135,8 @@ class RecipeEdit extends React.Component<RecipeEditProps, RecipeEditState> {
                     </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+          <Button color="pink" onClick={this.toggle}>Close</Button>{' '}
+          <Button color="purple" onClick={this.toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
                 {/* <Button isOpen={this.toggle}>Update</Button>

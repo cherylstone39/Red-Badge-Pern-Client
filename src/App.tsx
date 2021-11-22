@@ -6,10 +6,10 @@ import Nav from './components/home/NavComponent';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Auth from './components/auth/Auth';
 import RecipeIndex from './components/recipes/RecipeIndex';
-import Recipes from './components/site/Recipes';
 import Footer from './components/home/Footer';
 import Home from './components/home/Home';
-import RatingsIndex from './components/feedback/RatingsIndex';
+
+
 
 
 
@@ -23,7 +23,7 @@ interface AppState {
   
 }
  
-class App extends React.Component<AppProps, AppState> {
+class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = { sessionToken: '' , role: ''};
@@ -59,7 +59,7 @@ class App extends React.Component<AppProps, AppState> {
 
 
 protectedViews = () => {
-  return(this.state.sessionToken === localStorage.getItem('token') ? <Recipes sessionToken={this.state.sessionToken} />
+  return(this.state.sessionToken === localStorage.getItem('token') ? <RecipeIndex sessionToken={this.state.sessionToken} />
   : <Auth updateToken={this.updateToken} />)
  
 }
@@ -74,11 +74,12 @@ protectedViews = () => {
         <br/>
         <br/>  
         
-        <Router>
-        {this.protectedViews()}
+      
+       <Router>
+        {this.protectedViews()} 
+      </Router>
           
         {/* <Home /> */}
-       </Router>
        <br/>
        <br/>
        <Footer />
