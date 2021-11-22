@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { Button, Form, FormGroup, Label, ModalFooter, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 
 interface RecipeEditProps {
@@ -45,7 +46,7 @@ class RecipeEdit extends React.Component<RecipeEditProps, RecipeEditState> {
         e.preventDefault();
         // console.log(this.state.recipeToUpdate);
         fetch(
-          `http://localhost:3000/recipe/update/${this.props.recipe.id}`,
+          `${APIURL}/recipe/update/${this.props.recipe.id}`,
           {
             method: "PUT",
             body: JSON.stringify({

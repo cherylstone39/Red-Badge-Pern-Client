@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import loginImg from "../../components/assets/loginImg.jpeg";
 import  "./Login.scss";
 import { Form, Button, Container } from 'react-bootstrap';
+import APIURL from '../../helpers/environment';
 
 interface LoginProps {
     updateToken: any;
@@ -43,7 +44,7 @@ class Login  extends React.Component<LoginProps, LoginState> {
             
         };
 
-        fetch('http://localhost:3000/user/login', {
+        fetch(`${APIURL}/user/login`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: new Headers({

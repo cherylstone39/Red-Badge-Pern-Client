@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { Button, Container, Row, Col, Form, Label, Input } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 
 interface RecipeCreateProps {
@@ -41,7 +42,7 @@ class RecipeCreate extends Component<RecipeCreateProps, RecipeCreateState> {
         event.preventDefault();
         // if(userId.role === 'admin') {
 
-            fetch('http://localhost:3000/recipe/create' , {
+            fetch(`${APIURL}/recipe/create` , {
                 method: 'POST',
                 body: JSON.stringify({recipe: {nameOfDessert: this.state.nameOfDessert, recipe:this.state.recipe, directions: this.state.directions, timeToBake: this.state.timeToBake, servings: this.state.servings, photo: this.state.photo, userId: this.state.userId}}),
                 headers: new Headers ({

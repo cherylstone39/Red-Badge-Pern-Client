@@ -4,6 +4,7 @@ import { Form, Container, Col, Row, Button  } from 'react-bootstrap'
 import pie from "../../components/assets/pie.jpg";
 import "./Register.scss"
 import { Link } from 'react-router-dom';
+import APIURL from '../../helpers/environment';
 
 
 
@@ -43,7 +44,7 @@ class Register extends Component<RegisterProps, RegisterState> {
             role
         } = this.state
 
-        fetch('http://localhost:3000/user/register', {
+        fetch(`${APIURL}/user/register`, {
             method: 'POST',
             body: JSON.stringify({
             firstName: firstName,

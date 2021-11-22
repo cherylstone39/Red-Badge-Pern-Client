@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Table, Button} from 'reactstrap';
 import RecipeEdit from "./RecipeEdit"
+import APIURL from '../../helpers/environment';
 
 
 const RecipeTable = (props) => {
 
     const deleteRecipe = (recipe) => {
-        fetch(`http://localhost:3000/recipe/delete/${recipe.id}`, {
+        fetch(`${APIURL}/recipe/delete/${recipe.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',

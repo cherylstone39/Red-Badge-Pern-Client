@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { Container, Row, Col , Form, FormGroup, ModalFooter} from 'react-bootstrap'
 import { Modal, ModalHeader, ModalBody, Button, Label, Input } from 'reactstrap'
 import { FaStar } from 'react-icons/fa';
+import APIURL from '../../helpers/environment';
 
 interface RatingsProps {
     sessionToken: any,
@@ -27,7 +28,7 @@ class Ratings extends Component<RatingsProps, RatingsState> {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        fetch('http://localhost:3000/ratings/create', {
+        fetch(`${APIURL}/ratings/create`, {
             method: 'POST',
             body: JSON.stringify({ratings: {ratingOfDessert: this.state.ratingOfDessert, feedback: this.state.feedback, recipeId: this.state.recipeId}}),
             headers: new Headers({

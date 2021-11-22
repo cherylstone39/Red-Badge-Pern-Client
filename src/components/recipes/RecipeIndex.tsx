@@ -7,6 +7,7 @@ import RecipeEdit from "./RecipeEdit";
 import Sweets from "../site/Recipes";
 import RecipeTable from "./RecipeTable";
 import RatingsIndex from '../feedback/RatingsIndex';
+import APIURL from '../../helpers/environment';
 
 interface RecipeIndexProps {
   sessionToken: any;
@@ -57,7 +58,7 @@ class RecipeIndex extends React.Component<RecipeIndexProps, RecipeIndexState> {
   };
 
   fetchRecipes = () => {
-    fetch("http://localhost:3000/recipe/get", {
+    fetch(`${APIURL}/recipe/get`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

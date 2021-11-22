@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Ratings from '../feedback/Ratings';
 import RatingsTable from './RatingsTable';
+import APIURL from '../../helpers/environment';
 
 
 
@@ -22,7 +23,7 @@ class RatingsIndex extends React.Component<RatingsIndexProps, RatingsIndexState>
     }
 
     fetchRatings = () => {
-        fetch('http:localhost:3000/ratings/get', {
+        fetch(`${APIURL}/ratings/get`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json'
