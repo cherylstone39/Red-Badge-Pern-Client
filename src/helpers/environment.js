@@ -7,8 +7,8 @@ switch(window.localhost.hostname) {
     APIURL = 'http://localhost:3000';
     break;
 
-    case 'my-cs-clientsugarshackapp.herokuapp.com':
-        APIURL = 'https://my-cs-clientsugarshackapp.herokuapp.com'
+    case 'cs-my-clientsugarshackapp.herokuapp.com':
+        APIURL = 'https://cs-my-clientsugarshackapp.herokuapp.com'
 
 }
 
