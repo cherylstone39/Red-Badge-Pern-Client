@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Link, Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import RecipeIndex from '../recipes/RecipeIndex';
-import RatingsIndex from '../feedback/RatingsIndex';
+import Ratings from '../feedback/Ratings';
 import cklog from '../assets/cklog.jpg';
 
 const Sweets = (props) => {
@@ -30,8 +30,8 @@ return( <Col md='4' key={index}>
 <li className="list-group-item">{recipe.servings}</li>
 </ul>
 <div className="card-body">
-<a href="#" className="card-link">Rate Dessert</a>
-<a href="#" className="card-link">Baker-Post a Recipe</a>
+<a href="/ratings" className="ratings">Rate Dessert</a>
+{/* <a href="#" className="card-link">Baker-Post a Recipe</a> */}
 </div>
 </div>
  </Col>

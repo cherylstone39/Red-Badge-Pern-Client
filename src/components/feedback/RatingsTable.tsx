@@ -43,21 +43,8 @@ const RatingsTable = (props) => {
             <hr />
             <Container>
                 <Row>
-                    <Col sm='12'>
-
-            <Table striped>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>RatingOfDessert</th>
-                        <th style={{padding:'15px',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif' }}>Feedback</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ratingsMapper()}
-                </tbody>
-            </Table>
-                    </Col>
+                      {ratingsMapper()}
+               
                 </Row>
             </Container>
         </div>
