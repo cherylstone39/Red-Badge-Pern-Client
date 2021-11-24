@@ -7,7 +7,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Auth from './components/auth/Auth';
 import RecipeIndex from './components/recipes/RecipeIndex';
 import Footer from './components/home/Footer';
-import Home from './components/home/Home';
 
 
 
